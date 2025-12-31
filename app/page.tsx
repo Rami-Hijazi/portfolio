@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, ExternalLink, Code2, Layers, Database } from 'lucide-react'
+import { Github, Mail, ExternalLink, Layers, GraduationCap, Code2, Cpu, Globe } from 'lucide-react'
 
 export default function Portfolio() {
   return (
@@ -23,27 +23,33 @@ export default function Portfolio() {
       </nav>
 
       {/* --- HERO SECTION --- */}
-      <section className="pt-40 pb-20 px-6 max-w-6xl mx-auto flex flex-col items-center text-center">
+      <section className="pt-32 pb-20 px-6 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+        
+        {/* TEXT SIDE */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          className="flex-1 text-center md:text-left"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <span className="px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-xs font-bold uppercase tracking-wider mb-6 inline-block">
-            Full Stack Developer
-          </span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-xs font-bold uppercase tracking-wider mb-6">
+            <GraduationCap size={14} /> CS Student @ HTU
+          </div>
+          
           <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight">
-            Building digital <br />
+            Next-Level <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
-              experiences.
+              React Developer.
             </span>
           </h1>
-          <p className="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            I craft high-performance web applications with clean architecture and modern design. 
-            Specializing in React, Next.js, and complex interactive systems.
+          
+          <p className="text-zinc-400 text-lg leading-relaxed mb-8 max-w-2xl">
+            I am a **Computer Science student** at **Al-Hussein Technical University (HTU)** with deep expertise in the modern web.
+            <br /><br />
+            I specialize in building complex, high-performance applications using **React** and **Next.js**. I don't just write code; I engineer scalable solutions with clean architecture.
           </p>
           
-          <div className="flex gap-4 justify-center">
+          <div className="flex gap-4 justify-center md:justify-start mb-10">
             <a href="#projects" className="px-8 py-3 rounded-full bg-white text-black font-bold hover:bg-zinc-200 transition-colors">
               View My Work
             </a>
@@ -51,7 +57,42 @@ export default function Portfolio() {
               <Github size={20} /> GitHub
             </a>
           </div>
+
+          {/* TECH STACK BADGES */}
+          <div>
+            <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-4">Tech Stack</p>
+            <div className="flex flex-wrap justify-center md:justify-start gap-3">
+                {['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Node.js', 'MongoDB'].map((tech) => (
+                    <span key={tech} className="px-4 py-2 rounded-lg bg-[#09090b] border border-white/10 text-zinc-300 text-sm font-bold flex items-center gap-2">
+                        {tech === 'React' || tech === 'Next.js' ? <Code2 size={16} className="text-indigo-500"/> : 
+                         tech === 'Node.js' ? <Cpu size={16} className="text-indigo-500"/> : <Globe size={16} className="text-indigo-500"/>}
+                        {tech}
+                    </span>
+                ))}
+            </div>
+          </div>
         </motion.div>
+
+        {/* IMAGE SIDE */}
+        <motion.div 
+          className="flex-shrink-0 relative"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+            {/* Glow Effect */}
+            <div className="absolute inset-0 bg-indigo-500 blur-[80px] opacity-20 rounded-full"></div>
+            
+            {/* IMAGE CONTAINER */}
+            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
+                <img 
+                    src="/me.jpeg" 
+                    alt="Rami Hijazi" 
+                    className="w-full h-full object-cover"
+                />
+            </div>
+        </motion.div>
+
       </section>
 
       {/* --- PROJECTS SECTION --- */}
@@ -69,7 +110,6 @@ export default function Portfolio() {
             viewport={{ once: true }}
             className="group relative bg-[#09090b] border border-white/10 rounded-2xl overflow-hidden hover:border-indigo-500/50 transition-all duration-300"
           >
-            {/* Project Preview (Placeholder Gradient) */}
             <div className="h-48 bg-gradient-to-br from-gray-900 to-black relative flex items-center justify-center border-b border-white/5">
                 <div className="text-4xl font-black text-white/5 group-hover:text-indigo-500/10 transition-colors">TIER MAKER</div>
             </div>
@@ -91,7 +131,6 @@ export default function Portfolio() {
               </div>
 
               <div className="flex gap-4">
-                {/* *** ACTIVE LINK GOES HERE *** */}
                 <a href="https://tier-list-maker-xi.vercel.app" target="_blank" className="flex items-center gap-2 text-sm font-bold text-white hover:text-indigo-400 transition-colors">
                   <ExternalLink size={16} /> Live Demo
                 </a>
@@ -118,7 +157,7 @@ export default function Portfolio() {
               <h3 className="text-2xl font-bold mb-3 group-hover:text-indigo-400 transition-colors">Clinic Management System</h3>
               <p className="text-zinc-400 mb-6 leading-relaxed">
                 A comprehensive dashboard for managing patient records, appointments, and staff. 
-                Focuses on clean architecture and efficient data handling.
+                Focuses on clean architecture, authentication, and efficient data handling.
               </p>
               
               <div className="flex flex-wrap gap-2 mb-8">
@@ -145,7 +184,7 @@ export default function Portfolio() {
 
       {/* --- FOOTER --- */}
       <footer id="contact" className="py-20 border-t border-white/10 text-center">
-        <h2 className="text-3xl font-bold mb-8">Let's work together.</h2>
+        <h2 className="text-3xl font-bold mb-8">Let's build something amazing.</h2>
         <a href="mailto:rami.bhijazi@gmail.com" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-indigo-600 hover:bg-indigo-500 font-bold transition-all">
           <Mail size={18} /> Contact Me
         </a>
